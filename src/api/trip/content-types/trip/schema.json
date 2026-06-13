@@ -1,0 +1,112 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trips",
+  "info": {
+    "singularName": "trip",
+    "pluralName": "trips",
+    "displayName": "Trip",
+    "description": "Fleet trips"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "origin": {
+      "type": "string",
+      "required": true
+    },
+    "destination": {
+      "type": "string",
+      "required": true
+    },
+    "start_date": {
+      "type": "datetime",
+      "required": true
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["upcoming", "in_progress", "completed", "cancelled"],
+      "default": "upcoming",
+      "required": true
+    },
+    "trip_source": {
+      "type": "enumeration",
+      "enum": ["ola", "uber", "rapido", "private", "other"],
+      "default": "other",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "advance_payment": {
+      "type": "decimal",
+      "default": 0
+    },
+    "km": {
+      "type": "decimal",
+      "default": 0
+    },
+    "actual_kms": {
+      "type": "decimal",
+      "default": 0
+    },
+    "odometer_start": {
+      "type": "decimal"
+    },
+    "odometer_end": {
+      "type": "decimal"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": ["pending", "paid"],
+      "default": "pending"
+    },
+    "payment_received": {
+      "type": "decimal",
+      "default": 0
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": ["upi", "cash"],
+      "required": false
+    },
+    "notes": {
+      "type": "text"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "trips"
+    },
+    "driver": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver.driver",
+      "inversedBy": "trips"
+    },
+    "vehicle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vehicle.vehicle",
+      "inversedBy": "trips"
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "trip"
+    },
+    "invoices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invoice.invoice",
+      "mappedBy": "trip"
+    }
+  }
+}

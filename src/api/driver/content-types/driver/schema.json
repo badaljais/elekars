@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "drivers",
+  "info": {
+    "singularName": "driver",
+    "pluralName": "drivers",
+    "displayName": "Driver",
+    "description": "Fleet drivers"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "license_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "address": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "inactive"],
+      "default": "active",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "trips": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trip.trip",
+      "mappedBy": "driver"
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "uploaded_by"
+    },
+    "incentives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::incentive.incentive",
+      "mappedBy": "driver"
+    },
+    "salary_slips": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::salary-slip.salary-slip",
+      "mappedBy": "driver"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "incentives",
+  "info": {
+    "singularName": "incentive",
+    "pluralName": "incentives",
+    "displayName": "Incentive",
+    "description": "Driver incentives"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "reason": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "driver": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver.driver",
+      "inversedBy": "incentives"
+    },
+    "trip": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::trip.trip"
+    }
+  }
+}

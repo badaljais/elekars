@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "salary_slips",
+  "info": {
+    "singularName": "salary-slip",
+    "pluralName": "salary-slips",
+    "displayName": "Salary Slip",
+    "description": "Monthly salary slips for drivers"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "month": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 12
+    },
+    "year": {
+      "type": "integer",
+      "required": true
+    },
+    "base_salary": {
+      "type": "decimal",
+      "required": true
+    },
+    "incentive": {
+      "type": "decimal",
+      "default": 0
+    },
+    "deductions": {
+      "type": "decimal",
+      "default": 0
+    },
+    "net_salary": {
+      "type": "decimal",
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "driver": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver.driver",
+      "inversedBy": "salary_slips"
+    }
+  }
+}

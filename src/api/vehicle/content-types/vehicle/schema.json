@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicles",
+  "info": {
+    "singularName": "vehicle",
+    "pluralName": "vehicles",
+    "displayName": "Vehicle",
+    "description": "Fleet vehicles"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "registration_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "fuel_type": {
+      "type": "enumeration",
+      "enum": ["diesel", "petrol", "cng", "electric"],
+      "required": true
+    },
+    "year": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["available", "on_trip", "maintenance"],
+      "default": "available",
+      "required": true
+    },
+    "trips": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trip.trip",
+      "mappedBy": "vehicle"
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "vehicle"
+    }
+  }
+}

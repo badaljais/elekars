@@ -1,0 +1,15 @@
+{
+  "kind": "singleType",
+  "collectionName": "custom_user",
+  "info": {
+    "singularName": "custom-user",
+    "pluralName": "custom-users",
+    "displayName": "Custom User API",
+    "description": "Custom auth and driver endpoints"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
